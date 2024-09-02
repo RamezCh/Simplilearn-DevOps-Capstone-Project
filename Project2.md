@@ -140,3 +140,25 @@ take public IP at bottom from EC2 Instance we created, go to browser and give ip
 #### Configure Maven
 
 Manage Jenkins -> Tools -> scroll down -> Add Maven -> name it mymaven then save -> new item -> CapstoneProject2-CICDpipline -> create pipline
+
+pipeline {
+  agent any
+  tools{
+  maven 'mymaven'
+  }
+  stages{
+    stage('Checkout Code'){
+      steps{git 'https://github.com/Sonal0409/MavenBuild-SL.git'}
+    }
+    stage('Build the Code'){
+      steps{
+      sh 'mvn package'
+      }
+    }
+    stage('Build the Image'){
+      steps{
+      sh 'docker build -t capstoneproject:$BUILD_NUMBER .'
+      }
+    }
+  }
+}
