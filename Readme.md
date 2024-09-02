@@ -73,3 +73,36 @@ Write pipeline code:
 ### Step 4:
 
 - Set up webhook trigger on jenkins for continous integration and deployment
+
+
+## Applying Solution:
+
+AWS Lab -> EC2 -> Launch Instance -> Change Region to US-East (Virginia) -> Name it CapstoneProject ->
+
+sudo su -
+
+git --version (if  there no need to install)
+
+apt-get update
+
+Install Java:
+
+sudo apt install default-jre -y
+
+java -version to confirm installation
+
+Install Jenkins:
+
+  sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \ https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+
+  echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \ https://pkg.jenkins.io/debian-stable binary/ | sudo tee \ /etc/apt/sources.list.d/jenkins.list > /dev/null
+    
+  sudo apt-get update
+  
+  sudo apt-get install fontconfig openjdk-17-jre
+  
+  sudo apt-get install jenkins
+
+  Install Docker:
+
+  
