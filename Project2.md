@@ -133,6 +133,6 @@ press q to come out of above command
 
 #### Connect to Jenkins Dashboard
 
-
+take public IP at bottom from EC2 Instance we created, go to browser and give ip:8080 then go to EC2 instance again and cat /var/lib/jenkins/secrets/initialAdminPassword and it will show pass then copy and paste it then login -> install suggested plugins
 
 
