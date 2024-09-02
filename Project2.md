@@ -139,4 +139,4 @@ take public IP at bottom from EC2 Instance we created, go to browser and give ip
 
 #### Configure Maven
 
-Manage Jenkins -> Tools -> scroll down -> Add Maven -> name it mymaven then save
+Manage Jenkins -> Tools -> scroll down -> Add Maven -> name it mymaven then save -> new item -> CapstoneProject2-CICDpipline -> create pipline
