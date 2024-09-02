@@ -77,13 +77,15 @@ Write pipeline code:
 
 ## Applying Solution:
 
+### Step 1:
+
 AWS Lab -> EC2 -> Launch Instance -> Change Region to US-East (Virginia) -> Name it CapstoneProject -> Ubuntu -> 22.04 -> Create new key pair -> 02Sep key name -> Edit near network -> add security group rule -> All traffic instead of custom TCP -> Anywhere -> Launch instance -> go to instances -> select CapstoneProject instance and connect -> type below commands
 
 sudo su -
 
 git --version
 
-Install java
+#### Install java
 
 apt-get update
 
@@ -91,7 +93,7 @@ sudo apt install default-jre -y
 
 java -version
 
-Download Jenkins
+#### Download Jenkins
 
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
 
@@ -110,7 +112,7 @@ Take the screenshot for above command output
 
 press q to come out of above command
 
-Install Docker:
+#### Install Docker:
 
 sudo apt update
 
@@ -128,3 +130,9 @@ sudo systemctl status docker
 Take the screenshot for above command output
 
 press q to come out of above command
+
+#### Connect to Jenkins Dashboard
+
+
+
+
