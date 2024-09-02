@@ -77,32 +77,54 @@ Write pipeline code:
 
 ## Applying Solution:
 
-AWS Lab -> EC2 -> Launch Instance -> Change Region to US-East (Virginia) -> Name it CapstoneProject ->
+AWS Lab -> EC2 -> Launch Instance -> Change Region to US-East (Virginia) -> Name it CapstoneProject -> Ubuntu -> 22.04 -> Create new key pair -> 02Sep key name -> Edit near network -> add security group rule -> All traffic instead of custom TCP -> Anywhere -> Launch instance -> go to instances -> select CapstoneProject instance and connect -> type below commands
 
 sudo su -
 
-git --version (if  there no need to install)
+git --version
+
+Install java
 
 apt-get update
 
-Install Java:
-
 sudo apt install default-jre -y
 
-java -version to confirm installation
+java -version
 
-Install Jenkins:
+Download Jenkins
 
-  sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \ https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
 
-  echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \ https://pkg.jenkins.io/debian-stable binary/ | sudo tee \ /etc/apt/sources.list.d/jenkins.list > /dev/null
-    
-  sudo apt-get update
-  
-  sudo apt-get install fontconfig openjdk-17-jre
-  
-  sudo apt-get install jenkins
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
 
-  Install Docker:
+apt-get update
 
-  
+apt-get install jenkins -y
+
+systemctl start jenkins
+
+
+systemctl status jenkins
+
+Take the screenshot for above command output
+
+press q to come out of above command
+
+Install Docker:
+
+sudo apt update
+
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+apt-cache policy docker-ce
+
+sudo apt install docker-ce -y
+
+sudo systemctl status docker
+
+Take the screenshot for above command output
+
+press q to come out of above command
