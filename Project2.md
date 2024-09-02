@@ -162,3 +162,5 @@ pipeline {
     }
   }
 }
+
+fork https://github.com/Sonal0409/MavenBuild-SL then go to settings -> webhook -> add webhook -> http://54.242.125.121:8080/github-webhook/ or your instance public ip:8080/github-webhook
