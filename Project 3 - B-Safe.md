@@ -160,47 +160,42 @@ Before executing the pipleine give jenkins permsision to run docker commands
 
 Create the following pipeline in jenkins
 
-pipeline{
-    tools{
+pipeline {
+    tools {
         maven 'mymaven'
     }
     agent any
-    stages{
-        stage('clone repo'){
-            steps{
+    stages {
+        stage('Clone Repo') {
+            steps {
                 git 'https://github.com/Sonal0409/DevOpsCodeDemo.git'
             }
         }
-        stage('Build Code'){
-            steps{
+        stage('Build Code') {
+            steps {
                 sh 'mvn package'
             }
         }
-        
-        
-        stage('build Image'){
-          
-            steps{
-                sh 'cp /var/lib/jenkins/workspace/CICDpipeline/target/addressbook.war .'
+        stage('Build Image') {
+            steps {
+                // Ensure the path to the WAR file is correct
+                sh 'cp target/addressbook.war .'
+                // Ensure Dockerfile is in the root of the workspace or adjust the path
                 sh 'docker build -t myaddressbook .'
             }
         }
-        
-        stage('push Image'){
-            steps{
-
-withCredentials([string(credentialsId: 'DOCKER_HUB_PASWD', variable: 'DOCKER_HUB_PASWD')]) {
-                sh 'docker login -u dockerUsername -p ${DOCKER_HUB_PASWD}'
+        stage('Push Image') {
+            steps {
+                withCredentials([string(credentialsId: 'DOCKER_PAT', variable: 'DOCKER_PAT')]) {
+                    sh 'docker login -u ramezchreide -p ${DOCKER_PAT}'
                 }
-              
-                sh 'docker tag myaddressbook dockerUsername/myaddressbook'
-                sh 'docker push dockerUsername/myaddressbook'
+                sh 'docker tag myaddressbook ramezchreide/myaddressbook'
+                sh 'docker push ramezchreide/myaddressbook'
             }
         }
-        
-        stage('Deploy container'){
-            steps{
-                sh 'docker run -d -P dockerUsername/myaddressbook'
+        stage('Deploy Container') {
+            steps {
+                sh 'docker run -d -P ramezchreide/myaddressbook'
             }
         }
     }
