@@ -190,21 +190,26 @@ pipeline{
             steps{
 
 withCredentials([string(credentialsId: 'DOCKER_HUB_PASWD', variable: 'DOCKER_HUB_PASWD')]) {
-                sh 'docker login -u edu123 -p ${DOCKER_HUB_PASWD}'
+                sh 'docker login -u dockerUsername -p ${DOCKER_HUB_PASWD}'
                 }
               
-                sh 'docker tag myaddressbook edu123/myaddressbook'
-                sh 'docker push edu123/myaddressbook'
+                sh 'docker tag myaddressbook dockerUsername/myaddressbook'
+                sh 'docker push dockerUsername/myaddressbook'
             }
         }
         
         stage('Deploy container'){
             steps{
-                sh 'docker run -d -P edu123/myaddressbook'
+                sh 'docker run -d -P dockerUsername/myaddressbook'
             }
         }
     }
 }
 
-Save the job and run it
+Save the job
 
+Note: replace dockerUsername with ur docker username
+
+Pipline Syntax -> (Snippet Generator) withCredentials -> Secret Text -> DOCKER_HUB_PASWD | Secret Text -> Docker credentials, ID: DOCKER_HUB_PASWD withCredentials([string(credentialsId: 'DOCKER_HUB_PASWD', variable: 'DOCKER_HUB_PASWD')]) {//some code}
+
+and run it
